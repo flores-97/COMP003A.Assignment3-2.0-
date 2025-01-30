@@ -17,6 +17,8 @@ namespace COMP003A.Assignment3__2._0_
             string expenseName3 = Console.ReadLine();
             string expenseName4 = Console.ReadLine();
             string expenseName5 = Console.ReadLine();
+            string removeExpense = (expenseName1 + expenseName2 + expenseName3 
+                + expenseName4 + expenseName5 );
             
             //amount of expenses
             double expenseValue1 = 0;
@@ -101,7 +103,13 @@ namespace COMP003A.Assignment3__2._0_
 
                 if (choice == 3)
                 {
-                    Console.Write("Enter the name of the expense to remove: ");
+                    Console.Write("\nEnter the name of the expense to remove: ");
+                    removeExpense = Console.ReadLine();
+                    
+                    Console.Write("Expense removed successfully!\nEnter done enter '5': \n");
+                    done = int.Parse(Console.ReadLine());
+
+                    if (choice == done) break;
                 }
             }
             
