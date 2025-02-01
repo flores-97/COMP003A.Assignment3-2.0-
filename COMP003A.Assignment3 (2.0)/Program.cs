@@ -6,19 +6,15 @@ namespace COMP003A.Assignment3__2._0_
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the budget Management Tool!\n");
             int choice;
             int done;
            
-            
             //name of expenses
             string expenseName1 = Console.ReadLine();
             string expenseName2 = Console.ReadLine();
             string expenseName3 = Console.ReadLine();
             string expenseName4 = Console.ReadLine();
             string expenseName5 = Console.ReadLine();
-            string removeExpense = (expenseName1 + expenseName2 + expenseName3 
-                + expenseName4 + expenseName5 );
             
             //amount of expenses
             double expenseValue1 = 0;
@@ -29,13 +25,12 @@ namespace COMP003A.Assignment3__2._0_
 
             //total expenses
             double budget;
-            double totalExpenses = expenseValue1 + expenseValue2 
-                + expenseValue3 + expenseValue4 + expenseValue5;
             
+            Console.WriteLine("Welcome to the budget Management Tool!\n");
             
             Console.Write("Enter your monthly income: ");
             budget = double.Parse(Console.ReadLine());
-            Console.WriteLine("Please select from the following Menu.");
+            Console.WriteLine("\nPlease select from the following Menu.");
             while (true)
             {
                 Console.WriteLine("1. Add an Expense");
@@ -46,13 +41,14 @@ namespace COMP003A.Assignment3__2._0_
                 choice = int.Parse(Console.ReadLine());
                 
                 if (choice == 4) break;
-            
 
-            
 
+
+               
                 if (choice == 1)
                 {
                     Console.Write("\nAdd up to 5 expese names and amounts.\n");
+                    Console.WriteLine("If no other expenses enter 'skip' with a value of zero.");
                     
 
                     Console.Write("Enter the expense name: ");
@@ -77,11 +73,12 @@ namespace COMP003A.Assignment3__2._0_
                     expenseValue5 = int.Parse(Console.ReadLine());
 
                     
-                    Console.Write("Expenses added successfully!\nEnter done enter '5': \n");
+                    Console.Write("\nExpenses added successfully!\n Enter '5' when done: ");
                     done = int.Parse(Console.ReadLine());
                     
                     if (choice == done) break;
                 }
+
                 
                 
                 
@@ -92,21 +89,36 @@ namespace COMP003A.Assignment3__2._0_
                     Console.Write($"Third expesnse - {expenseName3}: ${expenseValue3}\n");
                     Console.Write($"Fourth expense - {expenseName4}: ${expenseValue4}\n");
                     Console.Write($"Fifth expense - {expenseName5}: ${expenseValue5}\n");
-                    Console.Write($"Total Expenses: ${budget - totalExpenses}\n");
-                    Console.Write($"Remaining Budget: ${totalExpenses}\n");
+                    Console.Write($"Total Expenses: ${budget - (expenseValue1 + expenseValue2 + expenseValue3 + expenseValue4 + expenseValue5)}\n");
+                    Console.Write($"Remaining Budget: ${expenseValue1 + expenseValue2 + expenseValue3 + expenseValue4 + expenseValue5}\n");
 
-                    Console.Write("Enter done enter '5': \n");
+                    Console.Write("\nEnter '5' when done: \n");
                     done = int.Parse(Console.ReadLine());
 
                     if (choice == done) break;
                 }
 
                 if (choice == 3)
-                {
+                {   //only enter rent to successfully calculate budget
                     Console.Write("\nEnter the name of the expense to remove: ");
-                    removeExpense = Console.ReadLine();
-                    
-                    Console.Write("Expense removed successfully!\nEnter done enter '5': \n");
+                    Console.ReadLine();
+
+                    switch (expenseName1)
+                    {
+                    case "Rent":
+                        Console.WriteLine($"Removed {expenseName1}");
+                        Console.Write("Expense removed successfully!\n");
+                        Console.WriteLine($"New Balance: {budget - expenseValue1}");
+                            break;
+                        
+                        default:
+                        Console.WriteLine("Press 'Enter' to return");
+                            break;
+                    }
+
+
+
+                    Console.Write("\nEnter '5' when done: \n");
                     done = int.Parse(Console.ReadLine());
 
                     if (choice == done) break;
